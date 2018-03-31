@@ -11,6 +11,10 @@ extern map<string, int> wordMap;
 void PrintMap();
 
 extern int main(int argc, char *argv[]);
+
+extern string OpenAFile();
+extern bool IsSplitSymbol(char c);
+
 namespace UnitTest
 {		
 
@@ -173,6 +177,92 @@ namespace UnitTest
 			int res = main(argc, argv);
 			Assert::AreEqual<int>(-1, res);
 		}
+
+
+		TEST_METHOD(TestMethod3_1)
+		{
+			string path = OpenAFile();
+			Logger::WriteMessage(path.c_str());
+		}
+
+		TEST_METHOD(TestMethod3_2)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('-'), true);
+		}
+		TEST_METHOD(TestMethod3_3)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('!'), true);
+		}
+		TEST_METHOD(TestMethod3_4)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('@'), true);
+		}
+		TEST_METHOD(TestMethod3_5)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('$'), true);
+		}
+		TEST_METHOD(TestMethod3_6)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('%'), true);
+		}
+		TEST_METHOD(TestMethod3_7)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('^'), true);
+		}
+		TEST_METHOD(TestMethod3_8)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('&'), true);
+		}
+		TEST_METHOD(TestMethod3_9)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('*'), true);
+		}
+		TEST_METHOD(TestMethod3_10)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('('), true);
+		}
+		TEST_METHOD(TestMethod3_11)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol(')'), true);
+		}
+
+		TEST_METHOD(TestMethod3_12)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('-'), true);
+		}
+		TEST_METHOD(TestMethod3_13)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('+'), true);
+		}
+		TEST_METHOD(TestMethod3_14)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('='), true);
+		}
+		TEST_METHOD(TestMethod3_15)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('['), true);
+		}
+		TEST_METHOD(TestMethod3_16)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol(']'), true);
+		}
+		TEST_METHOD(TestMethod3_17)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('{'), true);
+		}
+		TEST_METHOD(TestMethod3_18)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol('}'), true);
+		}
+		TEST_METHOD(TestMethod3_19)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol(';'), true);
+		}
+		TEST_METHOD(TestMethod3_20)
+		{
+			Assert::AreEqual<bool>(IsSplitSymbol(':'), true);
+		}
+
 	};
 
 }

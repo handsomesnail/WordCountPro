@@ -1,4 +1,4 @@
-// WordCountPro.cpp: 定义控制台应用程序的入口点。
+﻿// WordCountPro.cpp: 定义控制台应用程序的入口点。
 //
 
 #include "stdafx.h"
@@ -84,6 +84,7 @@ inline void AddWord() {
 	tempWord.clear();
 }
 
+
 //返回是否是分隔符
 inline bool IsSplitSymbol(char c) {
 	if (splitSymbolsSet.find(c) != splitSymbolsSet.end())
@@ -91,3 +92,32 @@ inline bool IsSplitSymbol(char c) {
 	return false;
 }
 
+string OpenAFile() {
+	OPENFILENAME ofn;
+	TCHAR szFile[MAX_PATH];
+	ZeroMemory(&ofn, sizeof(OPENFILENAME));
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = szFile;
+	ofn.lpstrFile[0] = '\0';
+	ofn.nMaxFile = sizeof(szFile);
+	ofn.lpstrFilter = _T("Txt(*.txt)\0*.txt\0\0");
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = NULL;
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+	// 显示打开选择文件对话框。
+	if (GetOpenFileName(&ofn)) {
+		//路径转化为string
+		int iLen = WideCharToMultiByte(CP_ACP, 0, szFile, -1, NULL, 0, NULL, NULL);
+		char* chRtn = new char[iLen * sizeof(char)];
+		WideCharToMultiByte(CP_ACP, 0, szFile, -1, chRtn, iLen, NULL, NULL);
+		string str(chRtn);
+		delete chRtn;
+		return str;
+	}
+	else {
+		return "";
+	}
+}
