@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include <string>
 #include <map>
+#include <unordered_map>
 
 using namespace std;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -28,7 +29,8 @@ namespace UnitTest
 		TEST_METHOD(TestMethod1_1)
 		{
 			ReadAndCount("data1.txt");
-			PrintMap();
+			Output();
+			//PrintMap();
 		}
 		TEST_METHOD(TestMethod1_2)
 		{

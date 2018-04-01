@@ -12,7 +12,8 @@
 #include <windows.h>  
 #include <commdlg.h> 
 #include <vector>
-
+#include <unordered_map>
+#include <unordered_set>
 using namespace std;
 
 static set<char> splitSymbolsSet;//记录分隔符
@@ -90,9 +91,7 @@ inline void AddWord() {
 
 //返回是否是分隔符
 inline bool IsSplitSymbol(char c) {
-	if (splitSymbolsSet.find(c) != splitSymbolsSet.end())
-		return true;
-	return false;
+	return splitSymbolsSet.find(c) != splitSymbolsSet.end();
 }
 
 string OpenAFile() {
@@ -117,7 +116,7 @@ string OpenAFile() {
 		char* chRtn = new char[iLen * sizeof(char)];
 		WideCharToMultiByte(CP_ACP, 0, szFile, -1, chRtn, iLen, NULL, NULL);
 		string str(chRtn);
-		delete chRtn;
+		delete[] chRtn;
 		return str;
 	}
 	else {
