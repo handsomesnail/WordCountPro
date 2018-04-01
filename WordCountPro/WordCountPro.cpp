@@ -15,7 +15,6 @@
 
 using namespace std;
 
-
 static set<char> splitSymbolsSet;//记录分隔符
 map<string, int> wordMap;//记录单词-个数
 static string tempWord = "";//临时存储单词
@@ -35,6 +34,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	if (strcmp(argv[1], "-x") == 0) {
+		path = OpenAFile();
 		if (path == "")
 			return -3;
 	}
@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
 			return -2;
 		}
 	}
+	ReadAndCount(path);
+	Output();
 	return 0;
 }
 

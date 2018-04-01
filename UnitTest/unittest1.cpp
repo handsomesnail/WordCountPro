@@ -273,10 +273,6 @@ namespace UnitTest
 		TEST_METHOD(TestMethod4_2)
 		{
 			Output();//超过100个
-			int i = 0;
-			while (i < 10000000) {
-				i++;
-			}
 		}
 		TEST_METHOD(TestMethod4_3)
 		{
