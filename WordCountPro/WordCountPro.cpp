@@ -11,6 +11,7 @@
 #include <ctype.h>
 #include <windows.h>  
 #include <commdlg.h> 
+#include <vector>
 
 using namespace std;
 
@@ -120,4 +121,32 @@ string OpenAFile() {
 	else {
 		return "";
 	}
+}
+
+//输出结果到result.txt
+void Output() {
+	vector<pair<string, int>> tempVector(wordMap.begin(), wordMap.end());//哈希表转存到动态数组
+	sort(tempVector.begin(), tempVector.end(), Compare);//根据value和key排序
+
+	ofstream outfs("result.txt");
+	if (outfs.is_open()) {
+		for (int i = 0; i < tempVector.size(); i++) {
+			if (i >= 100)
+				break;
+
+			outfs << tempVector[i].first + " " << tempVector[i].second;
+			//cout << tempVector[i].first + " " << tempVector[i].second << endl;
+			if (i != 99 && i != tempVector.size() - 1)
+				outfs << endl;
+		}
+	}
+	outfs.close();
+
+}
+
+//传入排序的比较方法
+bool Compare(pair<string, int> p1, pair<string, int> p2) {
+	if (p1.second != p2.second)
+		return p1.second > p2.second;
+	else return p1.first < p2.first;
 }

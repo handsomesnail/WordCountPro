@@ -15,6 +15,9 @@ extern int main(int argc, char *argv[]);
 extern string OpenAFile();
 extern bool IsSplitSymbol(char c);
 
+extern bool Compare(pair<string, int> p1, pair<string, int> p2);
+extern void Output();
+
 namespace UnitTest
 {		
 
@@ -262,6 +265,40 @@ namespace UnitTest
 		{
 			Assert::AreEqual<bool>(IsSplitSymbol(':'), true);
 		}
+
+		TEST_METHOD(TestMethod4_1)
+		{
+			Output();//正常
+		}
+		TEST_METHOD(TestMethod4_2)
+		{
+			Output();//超过100个
+			int i = 0;
+			while (i < 10000000) {
+				i++;
+			}
+		}
+		TEST_METHOD(TestMethod4_3)
+		{
+			Assert::AreEqual<bool>(Compare(pair<string, int>("abc", 3), pair<string, int>("fhd", 4)), false);
+		}
+		TEST_METHOD(TestMethod4_4)
+		{
+			Assert::AreEqual<bool>(Compare(pair<string, int>("abc", 3), pair<string, int>("abc", 3)), false);
+		}
+		TEST_METHOD(TestMethod4_5)
+		{
+			Assert::AreEqual<bool>(Compare(pair<string, int>("abc", 3), pair<string, int>("ab", 3)), false);
+		}
+		TEST_METHOD(TestMethod4_6)
+		{
+			Assert::AreEqual<bool>(Compare(pair<string, int>("abc", 3), pair<string, int>("abcd", 3)), true);
+		}
+		TEST_METHOD(TestMethod4_7)
+		{
+			Assert::AreEqual<bool>(Compare(pair<string, int>("abc", 3), pair<string, int>("abd", 3)), true);
+		}
+
 
 	};
 
