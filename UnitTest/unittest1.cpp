@@ -8,7 +8,7 @@ using namespace std;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 extern void ReadAndCount(string fileName);
-extern map<string, int> wordMap;
+extern unordered_map<string, int> wordMap;
 void PrintMap();
 
 extern string CmdInput(int argc, char *argv[], int* code);
@@ -305,7 +305,7 @@ namespace UnitTest
 }
 
 void PrintMap() {
-	map<string, int>::iterator it;
+	unordered_map<string, int>::iterator it;
 	it = wordMap.begin();
 	while (it != wordMap.end()) {
 		Logger::WriteMessage((it->first + " "+to_string(it->second)+"\n").c_str());
